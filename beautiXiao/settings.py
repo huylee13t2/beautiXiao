@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from corsheaders.defaults import default_methods
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,7 @@ SECRET_KEY = '_n5!ovb@h*m!ni4wm&&6$74(-ekso7tyhp!52!!h56my2a)d(s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [beautixiao.pythonanywhere.com]
+ALLOWED_HOSTS = ['beautixiao.pythonanywhere.com']
 
 
 # Application definition
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'app',
 ]
 
@@ -51,6 +54,45 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'beautiXiao.urls'
+
+
+CORS_ORIGIN_WHITELIST = (
+    'google.com',
+    'beautixiao.pythonanywhere.com',
+    'hostname.example.com',
+    'localhost:4200',
+    'localhost:2000',
+    '127.0.0.1:2000'
+)
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
+CORS_ALLOW_METHODS = default_methods + (
+    'POKE',
+)
+
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)
+
+CORS_ALLOW_HEADERS = default_headers + (
+    'my-custom-header',
+)
 
 TEMPLATES = [
     {
