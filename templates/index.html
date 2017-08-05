@@ -1,45 +1,69 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Index
-        </title>
-        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
-            <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
-                <script src="{% static 'js/jquery.min.js' %}" type="text/javascript">
-                </script>
-                <script src="{% static 'bootstrap/js/bootstrap.min.js' %}" type="text/javascript">
-                </script>
-            </link>
-        </link>
-    </head>
-    <body>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        WebSiteName
-                    </a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="{% url 'index' %}">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'form_person' %}">
-                            Person
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'form_org' %}">
-                            Organisation
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="person">
+	<h3>List Person</h3>
+    <table class="table table-bordered">
+    	<thead>
+    		<th>Accountable user</th>
+    		<th>First name</th>
+    		<th>Last name</th>
+    		<th>Organisation</th>
+    		<th>City</th>
+    		<th>Mobile phone</th>
+    		<th>Country</th>
+    		<th>Email</th>
+    		<th>Skype</th>
+    	</thead>
+    	<tbody>
+    		{% for per in person %}
+    		<tr>
+    			<td>{{ per.accountable_user.username }}</td>
+    			<td>{{per.first_name}}</td>
+    			<td>{{per.last_name}}</td>
+    			<td>{{per.organisation}}</td>
+    			<td>{{per.city}}</td>
+    			<td>{{per.mobile_phone}}</td>
+    			<td>{{per.country}}</td>
+    			<td>{{per.email}}</td>
+    			<td>{{per.skype}}</td>
+    		</tr>
+    		{% endfor %}
+    	</tbody>
+    </table>
+</div>
+
+<div class="person">
+	<h3>List Organisation</h3>
+    <table class="table table-bordered">
+    	<thead>
+    		<th>Street</th>
+    		<th>City</th>
+    		<th>Region</th>
+    		<th>Zip code</th>
+    		<th>Country</th>
+    		<th>Mobile phone</th>
+    		<th>E-mail</th>
+    		<th>Telegram</th>
+    		<th>Skype</th>
+    		<th>Viber</th>
+    	</thead>
+    	<tbody>
+    		{% for org in orgs %}
+    		<tr>
+    			<td>{{ org.address_street }}</td>
+    			<td>{{org.city}}</td>
+    			<td>{{org.region}}</td>
+    			<td>{{org.zip_code}}</td>
+    			<td>{{org.country}}</td>
+    			<td>{{org.mobile_phone}}</td>
+    			<td>{{org.email}}</td>
+    			<td>{{org.telegram}}</td>
+    			<td>{{org.skype}}</td>
+    			<td>{{org.viber}}</td>
+    		</tr>
+    		{% endfor %}
+    	</tbody>
+    </table>
+</div>
+{% endblock %}

@@ -27,7 +27,7 @@ SECRET_KEY = '_n5!ovb@h*m!ni4wm&&6$74(-ekso7tyhp!52!!h56my2a)d(s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['beautixiao.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', 'beautiXiao.pythonanywhere.com']
 
 
 # Application definition
@@ -51,18 +51,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
-
-ROOT_URLCONF = 'beautiXiao.urls'
-
 
 CORS_ORIGIN_WHITELIST = (
     'google.com',
-    'beautixiao.pythonanywhere.com',
+    'beautiXiao.pythonanywhere.com',
     'hostname.example.com',
     'localhost:4200',
-    'localhost:2000',
-    '127.0.0.1:2000'
+    'localhost:8000',
+    '127.0.0.1:8000'
 )
 
 CORS_ALLOW_METHODS = (
@@ -94,6 +93,9 @@ CORS_ALLOW_HEADERS = default_headers + (
     'my-custom-header',
 )
 
+ROOT_URLCONF = 'beautiXiao.urls'
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -123,6 +125,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql', 
+    #     'NAME': 'beautiXiao',
+    #     'USER': 'root',
+    #     'PASSWORD': '2206',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
+    # }
 }
 
 
