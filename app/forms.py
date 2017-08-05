@@ -14,7 +14,7 @@ class PostFormPerson(ModelForm):
 	class Meta:
 
 		model = Person
-		fields = ['accountable_user', 'update_author', 'first_name', 'mid_name', 'last_name', 'organisation', 'address_street', 'address_line1', 'address_line2', 'address_line3', 'city', 'region', 'zip_code', 'country', 'mobile_phone', 'mobile_work_phone', 'work_phone', 'email', 'alt_email', 'skype', 'telegram', 'viber', 'whatsapp']
+		fields = ['accountable_user', 'first_name', 'mid_name', 'last_name', 'organisation', 'address_street', 'address_line1', 'address_line2', 'address_line3', 'city', 'region', 'zip_code', 'country', 'mobile_phone', 'mobile_work_phone', 'work_phone', 'email', 'alt_email', 'skype', 'telegram', 'viber', 'whatsapp']
 
 # 	class Meta:
 

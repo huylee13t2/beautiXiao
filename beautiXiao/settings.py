@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from corsheaders.defaults import default_methods
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,7 @@ SECRET_KEY = '_n5!ovb@h*m!ni4wm&&6$74(-ekso7tyhp!52!!h56my2a)d(s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [beautixiao.pythonanywhere.com]
+ALLOWED_HOSTS = ['localhost', 'beautiXiao.pythonanywhere.com']
 
 
 # Application definition
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'app',
 ]
 
@@ -48,9 +51,50 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
+CORS_ORIGIN_WHITELIST = (
+    'google.com',
+    'beautiXiao.pythonanywhere.com',
+    'hostname.example.com',
+    'localhost:4200',
+    'localhost:8000',
+    '127.0.0.1:8000'
+)
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
+CORS_ALLOW_METHODS = default_methods + (
+    'POKE',
+)
+
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+)
+
+CORS_ALLOW_HEADERS = default_headers + (
+    'my-custom-header',
+)
+
 ROOT_URLCONF = 'beautiXiao.urls'
+
 
 TEMPLATES = [
     {
@@ -81,6 +125,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql', 
+    #     'NAME': 'beautiXiao',
+    #     'USER': 'root',
+    #     'PASSWORD': '2206',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
+    # }
 }
 
 
